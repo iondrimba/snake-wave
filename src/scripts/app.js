@@ -31,25 +31,12 @@ export default class App {
       document.body.style.backgroundColor = color;
     });
 
-    const urls = [
-      'img/px.jpg',
-      'img/nx.jpg',
-      'img/py.jpg',
-      'img/ny.jpg',
-      'img/pz.jpg',
-      'img/nz.jpg'
-    ];
-
-    const cubemap = new THREE.CubeTextureLoader().load(urls);
-    cubemap.format = THREE.RGBAFormat;
-
     const obj = {
       color: '#ffffff',
       emissive: '#e07cff',
       reflectivity: 1,
       metalness: .2,
-      roughness: 0,
-      envMap: cubemap,
+      roughness: 0
     };
 
     const material = new THREE.MeshPhysicalMaterial(obj);
