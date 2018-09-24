@@ -42,8 +42,6 @@ export default class App {
     const material = new THREE.MeshPhysicalMaterial(obj);
     const geometry = new THREE.SphereGeometry(.5, 32, 32);
 
-    this.addShereGUI(obj, material);
-
     const tileTop = { color: '#fa3fce' };
     const tileTopMaterial = new THREE.MeshBasicMaterial(tileTop);
 
@@ -70,17 +68,6 @@ export default class App {
       this.velocity = velocity;
     });
 
-    const guiTop = this.gui.addFolder('Tile Top - Material');
-    guiTop.addColor(tileTop, 'color').onChange((color) => {
-      tileTopMaterial.needsUpdate = true;
-      tileTopMaterial.color = this.hexToRgbTreeJs(color);
-    });
-
-    const guiInside = this.gui.addFolder('Tile Inside - Material');
-    guiInside.addColor(tileInside, 'color').onChange((color) => {
-      tileInsideMaterial.needsUpdate = true;
-      tileInsideMaterial.color = this.hexToRgbTreeJs(color);
-    });
 
     this.createSet(1, 1, geometry, material, props, materials);
 
@@ -105,34 +92,6 @@ export default class App {
     this.animate();
 
     window.addEventListener('resize', this.onResize.bind(this));
-  }
-
-  addShereGUI(obj, material) {
-    const gui = this.gui.addFolder('Shepere');
-    gui.addColor(obj, 'color').onChange((color) => {
-      material.needsUpdate = true;
-      material.color = this.hexToRgbTreeJs(color);
-    });
-
-    gui.addColor(obj, 'emissive').onChange((emissive) => {
-      material.needsUpdate = true;
-      material.emissive = this.hexToRgbTreeJs(emissive);
-    });
-
-    gui.add(obj, 'reflectivity', 0, 1).onChange((reflectivity) => {
-      material.needsUpdate = true;
-      material.reflectivity = reflectivity;
-    });
-
-    gui.add(obj, 'metalness', 0, 1).onChange((metalness) => {
-      material.needsUpdate = true;
-      material.metalness = metalness;
-    });
-
-    gui.add(obj, 'roughness', 0, 1).onChange((roughness) => {
-      material.needsUpdate = true;
-      material.roughness = roughness;
-    });
   }
 
   radians(degrees) {
