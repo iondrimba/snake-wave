@@ -15,8 +15,8 @@ export default class App {
 
     this.scene = new THREE.Scene();
 
-    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
-    this.camera.position.set(15, 15, -15);
+    this.camera = new THREE.PerspectiveCamera(20, window.innerWidth / window.innerHeight, 1, 1000);
+    this.camera.position.set(60, 60, -60);
 
     this.addRenderer();
 
