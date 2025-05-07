@@ -4,6 +4,12 @@
 
 Live Demo <https://iondrimba.github.io/snake-wave/public>
 
+
+
+https://github.com/user-attachments/assets/6cad6990-01ec-4b98-8330-8a6fe693ff17
+
+
+
 ![App](https://github.com/iondrimba/images/blob/master/snake.gif)
 
 ## Credits
