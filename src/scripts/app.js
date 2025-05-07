@@ -1,7 +1,10 @@
-import 'styles/index.scss';
+import 'styles/index.css';
 
 export default class App {
   init() {
+    this.targetFPS = 60;
+    this.frameInterval = 1000 / this.targetFPS; // milliseconds per frame
+    this.lastFrameTime = 0;
     this.backgroundColor = '#6a2bff';
     this.spotLightColor = 0xffffff;
     this.angle = 0;
@@ -263,14 +266,20 @@ export default class App {
     this.angle += this.velocity;
   }
 
-  animate() {
-    this.drawWave();
-
-    this.controls.update();
-
-    this.renderer.render(this.scene, this.camera);
-
+  animate(currentTime = 0) {
     requestAnimationFrame(this.animate.bind(this));
+    const timeElapsed = currentTime - this.lastFrameTime;
+
+    // Only run animation logic if enough time has passed
+    if (timeElapsed >= this.frameInterval) {
+      // Update lastFrameTime, accounting for the actual time passed
+      // This prevents timing drift
+      this.lastFrameTime = currentTime - (timeElapsed % this.frameInterval);
+
+      this.drawWave();
+    }
+    this.controls.update();
+    this.renderer.render(this.scene, this.camera);
   }
 
   onResize() {
